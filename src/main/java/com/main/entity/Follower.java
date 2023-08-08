@@ -11,21 +11,15 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "followers")
 public class Follower {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;            
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "person_id")
-    private Person person;     
-    
-    @ManyToOne
-    @JoinColumn(name = "follower_person_id")
-    private Person followerPerson;  
+	@ManyToOne
+	@JoinColumn(name = "person_id")
+	private Person person;
+
+	@ManyToOne
+	@JoinColumn(name = "follower_person_id")
+	private Person followerPerson;
 }
-
-
-
-
-
-

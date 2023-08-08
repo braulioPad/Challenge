@@ -13,15 +13,14 @@ import lombok.Data;
 @Table(name = "messages")
 @Data
 public class Message {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;             
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "person_id")
-    private Person person;       
+	@ManyToOne
+	@JoinColumn(name = "person_id")
+	private Person person;
 
-    private String content;      
+	private String content;
 
-   
 }

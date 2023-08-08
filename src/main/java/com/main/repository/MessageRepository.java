@@ -7,6 +7,6 @@ import com.main.entity.Message;
 
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
-    // Define any custom methods related to Message entity here (if needed)
-    // ...
+	// Define any custom methods related to Message entity here (if needed)
+	// ...
 }
