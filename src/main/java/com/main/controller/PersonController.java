@@ -1,7 +1,5 @@
 package com.main.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +15,11 @@ import com.main.service.PersonService;
 public class PersonController {
 	@Autowired
 	private PersonService personService;
-	
-	
-	@RequestMapping(value = {"/search", "/search/{word}"}, method = RequestMethod.GET)
-	public ResponseEntity<ResponseDto<String>> MessagesByPerson(@RequestHeader("user_id") long userId,@RequestHeader("user_pass") long userpass,@PathVariable(required = false) String word){
-		
-		ResponseDto<String> response=personService.findAllMessagesByPersonId(userId, word);
+
+	@RequestMapping(value = { "/search", "/search/{word}" }, method = RequestMethod.GET)
+	public ResponseEntity<ResponseDto<String>> MessagesByPerson(@RequestHeader("user_id") long userId,
+			@PathVariable(required = false) String word) {
+		ResponseDto<String> response = personService.findAllMessagesByPersonId(userId, word);
 		return ResponseEntity.ok(response);
 	}
 
