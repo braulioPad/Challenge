@@ -1,10 +1,8 @@
 package com.main.service;
 
-import java.util.List;
-
-import com.main.entity.Message;
+import com.main.dto.ResponseDto;
 
 public interface PersonService {
 
-	public List<Message> findAllMessagesByPersonId(Long personId,String word);
+	public ResponseDto<String> findAllMessagesByPersonId(Long personId,String word);
 }
