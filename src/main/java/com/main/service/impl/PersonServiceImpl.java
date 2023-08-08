@@ -16,8 +16,11 @@ import com.main.service.PersonService;
 @Service
 public class PersonServiceImpl implements PersonService {
 
-	@Autowired
 	private PersonRepository personRepository;
+
+	public PersonServiceImpl(PersonRepository personRepository) {
+		this.personRepository = personRepository;
+	}
 
 	public ResponseDto<String> findAllMessagesByPersonId(Long personId, String word) {
 
@@ -35,13 +38,13 @@ public class PersonServiceImpl implements PersonService {
 				response.setData(result.stream().map(Message::getContent).collect(Collectors.toList()));
 				return response;
 			} else {
-				response.setStatus(204);
+				response.setStatus(200);
 				response.setMessage("No Data found");
 				response.setData(Collections.emptyList());
 				return response;
 			}
 		}
-		response.setStatus(204);
+		response.setStatus(200);
 		response.setMessage("No user found");
 		response.setData(Collections.emptyList());
 		// Return an empty list if the person is not found
