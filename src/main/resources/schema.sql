@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS people;
-DROP TABLE IF EXISTS messages;
-DROP TABLE IF EXISTS followers;
+DROP TABLE IF EXISTS people cascade;
+DROP TABLE IF EXISTS messages cascade;
+DROP TABLE IF EXISTS followers cascade;
 
 -- Feel free to augment or modify these schemas (and the corresponding data) as you see fit!
 CREATE TABLE people (

@@ -6,7 +6,5 @@ import com.main.entity.Message;
 
 public interface PersonService {
 
-	
-	
-	public List<Message> findAllMessagesByPersonId(Long personId);
+	public List<Message> findAllMessagesByPersonId(Long personId,String word);
 }
