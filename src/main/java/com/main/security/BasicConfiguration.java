@@ -10,6 +10,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -17,7 +18,8 @@ public class BasicConfiguration {
 
 	@Bean
 	public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
-		UserDetails user = User.withUsername("user").password(passwordEncoder.encode("pass")).roles("USER").build();
+		UserDetails user = User.withUsername("Bruce Wayne").password(passwordEncoder.encode("pass")).roles("USER")
+				.build();
 
 		UserDetails admin = User.withUsername("admin").password(passwordEncoder.encode("admin")).roles("USER", "ADMIN")
 				.build();
@@ -27,7 +29,9 @@ public class BasicConfiguration {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
+		http.authorizeRequests().requestMatchers(antMatcher("/h2-console/**")).permitAll().anyRequest().authenticated().and().httpBasic();
+		http.headers().frameOptions().disable();
+		http.csrf().disable();
 		return http.build();
 	}
 

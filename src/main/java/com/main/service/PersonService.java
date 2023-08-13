@@ -1,8 +1,11 @@
 package com.main.service;
 
+import com.main.dto.PopularFollowerDTO;
 import com.main.dto.ResponseDto;
 
 public interface PersonService {
 
-	public ResponseDto<String> findAllMessagesByPersonId(Long personId,String word);
+	public ResponseDto<String> findAllMessagesByPersonId(String personName,String word);
+	
+	public ResponseDto<PopularFollowerDTO> popularsFollower();
 }
