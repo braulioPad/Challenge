@@ -10,20 +10,17 @@ import com.main.service.PersonService;
 
 @RestController
 public class PersonController {
-	
+
 	private PersonService personService;
-	
-	
+
 	public PersonController(PersonService personService) {
 		super();
 		this.personService = personService;
 	}
 
-
-
 	@GetMapping("/users/popular-follower")
-    public ResponseEntity<ResponseDto<PopularFollowerDTO>> getAllUsersWithMostPopularFollower() {
-		ResponseDto<PopularFollowerDTO> response=personService.popularsFollower();
-        return ResponseEntity.ok(response);
-    }
+	public ResponseEntity<ResponseDto<PopularFollowerDTO>> getAllUsersWithMostPopularFollower() {
+		ResponseDto<PopularFollowerDTO> response = personService.popularsFollower();
+		return ResponseEntity.ok(response);
+	}
 }

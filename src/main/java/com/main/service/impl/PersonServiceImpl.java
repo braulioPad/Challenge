@@ -23,10 +23,11 @@ public class PersonServiceImpl implements PersonService {
 	private PersonRepository personRepository;
 
 	private MessageRepository messageReporsitory;
-	
+
 	private FollowerRepository followerRepository;
 
-	public PersonServiceImpl(PersonRepository personRepository, MessageRepository messageReporsitory,FollowerRepository followerRepository) {
+	public PersonServiceImpl(PersonRepository personRepository, MessageRepository messageReporsitory,
+			FollowerRepository followerRepository) {
 		this.personRepository = personRepository;
 		this.messageReporsitory = messageReporsitory;
 		this.followerRepository = followerRepository;
@@ -64,12 +65,14 @@ public class PersonServiceImpl implements PersonService {
 	public ResponseDto<PopularFollowerDTO> popularsFollower() {
 		ResponseDto<PopularFollowerDTO> response = new ResponseDto<>();
 		List<PopularFollowerProjection> result = personRepository.findAllUsersWithMostPopularFollower();
-		List<PopularFollowerDTO> followers= new ArrayList<>();
-		for(int i=0;i<result.size();i++) {
-			for(int j=0;j<result.size();j++) {
-				if(i!=j) {
-					if(followerRepository.findFollowerByPersonIdAndFollowerId(result.get(i).getPersonId(), result.get(j).getPersonId())!=null) {
-						PopularFollowerDTO follower= new PopularFollowerDTO(result.get(i).getPersonName(), result.get(j).getPersonName(), result.get(i).getFollowerCount());
+		List<PopularFollowerDTO> followers = new ArrayList<>();
+		for (int i = 0; i < result.size(); i++) {
+			for (int j = 0; j < result.size(); j++) {
+				if (i != j) {
+					if (followerRepository.findFollowerByPersonIdAndFollowerId(result.get(i).getPersonId(),
+							result.get(j).getPersonId()) != null) {
+						PopularFollowerDTO follower = new PopularFollowerDTO(result.get(i).getPersonName(),
+								result.get(j).getPersonName(), result.get(i).getFollowerCount());
 						followers.add(follower);
 						break;
 					}
@@ -81,5 +84,5 @@ public class PersonServiceImpl implements PersonService {
 		response.setData(followers);
 		return response;
 	}
-	
+
 }
