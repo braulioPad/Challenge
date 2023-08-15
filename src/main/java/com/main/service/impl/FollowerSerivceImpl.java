@@ -46,12 +46,13 @@ public class FollowerSerivceImpl implements FollowerService {
 				response.setData(Collections.emptyList());
 				return response;
 			}
+		} else {
+			// Return an empty list if the person is not found
+			response.setStatus(404);
+			response.setMessage("No user found");
+			response.setData(Collections.emptyList());
+			return response;
 		}
-		response.setStatus(404);
-		response.setMessage("No user found");
-		response.setData(Collections.emptyList());
-		// Return an empty list if the person is not found
-		return response;
 	}
 
 	public ResponseDto<String> addFollower(FollowerDto req, String username) {

@@ -29,7 +29,8 @@ public class BasicConfiguration {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeRequests().requestMatchers(antMatcher("/h2-console/**")).permitAll().anyRequest().authenticated().and().httpBasic();
+		http.authorizeRequests().requestMatchers(antMatcher("/h2-console/**")).permitAll().anyRequest().authenticated()
+				.and().httpBasic();
 		http.headers().frameOptions().disable();
 		http.csrf().disable();
 		return http.build();
