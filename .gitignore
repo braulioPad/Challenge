@@ -1,0 +1,10 @@
+# Compiled class file
+*.class
+*.classpath
+*.project
+bin/
+.settings/
+.gradle/
+gradlew
+gradlew.bat
+gradle/
