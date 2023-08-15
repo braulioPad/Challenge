@@ -29,11 +29,16 @@ public class FollowerSerivceImpl implements FollowerService {
 	public ResponseDto<String> allFollowers(String user) {
 
 		ResponseDto<String> response = new ResponseDto<>();
-
 		// First, find the person by their ID
 		Person person = personRepository.findByName(user).orElse(null);
-		// If the person is found, retrieve all messages from that person
-		if (person != null) {
+		if (null == person) {
+			// Return an empty list if the person is not found
+			response.setStatus(404);
+			response.setMessage("No user found");
+			response.setData(Collections.emptyList());
+			return response;
+		} else {
+			// If the person is found, retrieve all messages from that person
 			List<Person> result = followerRepository.findByFollowers(person.getId());
 			if (!result.isEmpty()) {
 				response.setStatus(200);
@@ -41,17 +46,12 @@ public class FollowerSerivceImpl implements FollowerService {
 				response.setData(result.stream().map(Person::getName).collect(Collectors.toList()));
 				return response;
 			} else {
+				// return an empty list if the person doesn't have followers
 				response.setStatus(200);
 				response.setMessage("No followers");
 				response.setData(Collections.emptyList());
 				return response;
 			}
-		} else {
-			// Return an empty list if the person is not found
-			response.setStatus(404);
-			response.setMessage("No user found");
-			response.setData(Collections.emptyList());
-			return response;
 		}
 	}
 
